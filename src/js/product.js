@@ -1,8 +1,12 @@
 import { getLocalStorage, setLocalStorage, getParams } from './utils.mjs';
 import ProductData from './ProductData.mjs';
+import product_details from './product_details.mjs';
 
 const dataSource = new ProductData('tents');
 const productID = getParams('product');
+
+const product = new product_details(productId, dataSource);
+product.init();
 
 console.log(dataSource.findProductById(productID));
 
