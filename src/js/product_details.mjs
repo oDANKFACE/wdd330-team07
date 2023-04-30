@@ -32,13 +32,17 @@ export default class ProductDetails
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
     // once we have the product details we can render out the HTML
-    this.renderProductDetails("main");
+    console.log("i got product", this.product)
+    this.renderProductDetails(".product-detail");
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
+    
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
+      
   }
+
  addProductToCart(product) 
   {
       //change to getLocalStorage. setLocalStorage will replace the item with the new one when adding more than one item.
@@ -56,10 +60,18 @@ export default class ProductDetails
   }
   renderProductDetails(selector) 
   {
+
+    //next
     const element = document.querySelector(selector);
+    console.log("are we outputting?", productDetailsTemplate(this.product) )
+    element.innerHTML = productDetailsTemplate(this.product);
+    /*
     element.insertAdjacentHTML(
       "afterBegin",
       productDetailsTemplate(this.product)
     );
+    */
   }
+
+
 }
