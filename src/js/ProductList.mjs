@@ -2,6 +2,9 @@
 //Used to generate a list of product cards
 
 function productCardTemplate(product) {
+
+  console.log("we should get one", product)
+
     return `<li class="product-card">
     <a href="product_pages/index.html?product=${product.Id}">
     <img
@@ -13,6 +16,10 @@ function productCardTemplate(product) {
     <p class="product-card__price">$${product.FinalPrice}</p></a>
   </li>`;
   }
+
+
+
+
 
 export default class ProductListing {
     constructor(category, dataSource, listElement) {
@@ -30,8 +37,28 @@ export default class ProductListing {
       this.renderList(list);
     }
 
-  renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
-  }
+    renderListWithTemplate (template, element, data ){
+      // add that template to his element
+      data.map((d, i)=>{
+        
+        //dont render 2 and 4 because they dont have images
+        console.log("i?", i)
+        if(i === 2 || i === 4){
+   
+        } else {
+          element.innerHTML += template(d);
+        }
+        //trying to get image
+      
+
+       
+      })
+  
+      
+    }
+
+    renderList(list) {
+      this.renderListWithTemplate(productCardTemplate, this.listElement, list);
+    }
 
   }
