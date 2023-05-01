@@ -17,10 +17,6 @@ function productCardTemplate(product) {
   </li>`;
   }
 
-
-
-
-
 export default class ProductListing {
     constructor(category, dataSource, listElement) {
       // We passed in this information to make our class as reusable as possible.
@@ -41,7 +37,7 @@ export default class ProductListing {
       // add that template to his element
       data.map((d, i)=>{
         
-        //dont render 2 and 4 because they dont have images
+        //don't render 2 and 4 because they don't have images
         console.log("i?", i)
         if(i === 2 || i === 4){
    
@@ -49,14 +45,9 @@ export default class ProductListing {
           element.innerHTML += template(d);
         }
         //trying to get image
-      
-
-       
       })
-  
-      
     }
-
+    
     renderList(list) {
       this.renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
