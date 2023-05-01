@@ -33,3 +33,10 @@ export function getParams(param)
   const product = urlParams.get('product');
   return product;
 }
+
+export function updateCartNumber(){
+  const items = getLocalStorage("so-cart");
+  let quantity = 0;
+
+  document.querySelector(".count").innerHTML = items.length;
+}
