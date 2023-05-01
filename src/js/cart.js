@@ -42,13 +42,13 @@ function deleteItem (e){
 
   let cartItems = localStorage.getItem('so-cart');
   cartItems = JSON.parse(cartItems);
-
+  //recreate cart with items deleted
   let newCart = [];
   cartItems.map(c => {
     if(c.Id !== itemId){
       newCart.push(c)
     }
-    //we wont add the matching one
+    //this wont add the matching one
   })
 
   newCart = JSON.stringify(newCart);

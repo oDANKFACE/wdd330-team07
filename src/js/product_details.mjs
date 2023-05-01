@@ -49,7 +49,6 @@ export default class ProductDetails
   {
 
       console.log("get product", this.product)
-      //change to getLocalStorage. setLocalStorage will replace the item with the new one when adding more than one item.
       let items = [] ;
       if( localStorage.getItem("so-cart") === null){
           console.log(1, items)
@@ -58,7 +57,7 @@ export default class ProductDetails
           console.log(2, items)
           items = localStorage.getItem("so-cart");
           //local storage stores as a string
-          //so you need convert going in and out using json parse
+          //it needs to be converted going in and out using json parse
           // json stringfy
           items = JSON.parse(items);
           items.push(this.product)
@@ -76,12 +75,7 @@ export default class ProductDetails
     const element = document.querySelector(selector);
     console.log("are we outputting?", productDetailsTemplate(this.product) )
     element.innerHTML = productDetailsTemplate(this.product);
-    /*
-    element.insertAdjacentHTML(
-      "afterBegin",
-      productDetailsTemplate(this.product)
-    );
-    */
+   
   }
 
 
