@@ -1,4 +1,4 @@
-import"./style-be2b37a9.js";import{P as r}from"./ProductData-ad4e9437.js";function c(t){return console.log("we should get one",t),`<li class="product-card">
+import"./style-be2b37a9.js";import{P as r}from"./ProductData-d6956273.js";function c(t){return console.log("we should get one",t),`<li class="product-card">
     <a href="product_pages/index.html?product=${t.Id}">
     <img
       src="${t.Image}"

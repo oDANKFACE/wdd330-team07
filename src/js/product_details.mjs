@@ -1,4 +1,4 @@
-import { setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) 
 {
@@ -26,9 +26,11 @@ export default class ProductDetails
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+   
   }
-  async init() 
+  async init() //gets called automtaically by default
   {
+    console.log("init", this.dataSource)
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
     // once we have the product details we can render out the HTML
@@ -43,20 +45,29 @@ export default class ProductDetails
       
   }
 
- addProductToCart(product) 
+ addToCart() 
   {
+
+      console.log("get product", this.product)
       //change to getLocalStorage. setLocalStorage will replace the item with the new one when adding more than one item.
-      let items = getLocalStorage('so-cart') || [];
-  
-      if(!Array.isArray(items))
-      {
-          items = [items];
+      let items = [] ;
+      if( localStorage.getItem("so-cart") === null){
+          console.log(1, items)
+          items.push(this.product)
+      } else {
+          console.log(2, items)
+          items = localStorage.getItem("so-cart");
+          //local storage stores as a string
+          //so you need convert going in and out using json parse
+          // json stringfy
+          items = JSON.parse(items);
+          items.push(this.product)
       }
-      items.push(product);
-      console.log(items);
+      console.log("this is items",items);
   
       //add all items to the cart
-      setLocalStorage('so-cart', items);
+      items = JSON.stringify(items);
+      localStorage.setItem('so-cart', items);
   }
   renderProductDetails(selector) 
   {

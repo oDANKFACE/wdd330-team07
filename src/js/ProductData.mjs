@@ -29,7 +29,10 @@ export default class ProductData
     console.log("id:", id,)
     return products.find((item) => {
       console.log("itemid", item.Id, id)
-      item.Id === id
+      //when you return true it will return the item back
+      return item.Id === id
     });
+
+
   }
 }
