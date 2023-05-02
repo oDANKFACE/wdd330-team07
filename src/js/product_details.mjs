@@ -1,4 +1,5 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartNumber } from "./utils.mjs";
+
 
 function productDetailsTemplate(product) 
 {
@@ -63,11 +64,13 @@ export default class ProductDetails
           items.push(this.product)
       }
       console.log("this is items",items);
-  
+      
       //add all items to the cart
       items = JSON.stringify(items);
       localStorage.setItem('so-cart', items);
-      
+      //This threw an error
+      //adds number when browser is refreshed or changes pages
+      updateCartNumber();
   }
   renderProductDetails(selector) 
 
@@ -79,6 +82,5 @@ export default class ProductDetails
     element.innerHTML = productDetailsTemplate(this.product);
    
   }
-
-
 }
+
