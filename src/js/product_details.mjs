@@ -61,15 +61,29 @@ export default class ProductDetails
           //it needs to be converted going in and out using json parse
           // json stringfy
           items = JSON.parse(items);
-          items.push(this.product)
+          let found = false;
+          let index =0;
+          for (let i=0; i<items.length; i++){
+            if (items[i].Name==this.product.Name){
+              found=true;
+              index=i;
+            }
+          }
+          if (!found){
+            this.product.Quantity=1;
+            items.push(this.product);
+          }
+          else{
+            items[index].Quantity=items[index].Quantity+1;
+          }
+          
       }
       console.log("this is items",items);
       
       //add all items to the cart
       items = JSON.stringify(items);
       localStorage.setItem('so-cart', items);
-      //This threw an error
-      //adds number when browser is refreshed or changes pages
+      
       updateCartNumber();
   }
   renderProductDetails(selector) 
