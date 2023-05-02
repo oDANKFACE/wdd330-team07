@@ -1,5 +1,6 @@
 import { getLocalStorage, updateCartNumber } from './utils.mjs';
 
+
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
@@ -55,8 +56,9 @@ function deleteItem (e){
 
   localStorage.setItem('so-cart', newCart );
   renderCartContents();
+  //Changes number on backpack
+  updateCartNumber();
 }
-
 
 
 renderCartContents();

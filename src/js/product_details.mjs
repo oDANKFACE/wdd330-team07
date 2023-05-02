@@ -67,8 +67,10 @@ export default class ProductDetails
       //add all items to the cart
       items = JSON.stringify(items);
       localStorage.setItem('so-cart', items);
+      
   }
   renderProductDetails(selector) 
+
   {
 
     //next
