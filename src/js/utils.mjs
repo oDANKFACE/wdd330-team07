@@ -1,3 +1,4 @@
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) 
 {
@@ -34,9 +35,19 @@ export function getParams(param)
   return product;
 }
 
-export function updateCartNumber(){
+export function updateCartNumber()
+{
   const items = getLocalStorage("so-cart");
+  // placeholder for item "Quantity" addition - EC
   let quantity = 0;
 
-  document.querySelector(".count").innerHTML = items.length;
+  // parse through itmes currently in cart - EC
+  for(let i = 0; i < items.length; i++)
+  {
+    // for each singular item, dive into the "Quantity" attribute and add it to "quantity" - EC
+    quantity += items[i].Quantity
+  }
+
+  // push true quantity back to HTML (backpack number) - EC
+  document.querySelector(".count").innerHTML = quantity;
 }
