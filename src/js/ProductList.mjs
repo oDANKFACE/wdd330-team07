@@ -1,8 +1,8 @@
 
 //Used to generate a list of product cards
 
-function productCardTemplate(product) {
-
+function productCardTemplate(product) 
+{
   console.log("we should get one", product)
 
     return `<li class="product-card">
