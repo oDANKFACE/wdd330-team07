@@ -1,4 +1,5 @@
-import { setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartNumber } from "./utils.mjs";
+
 
 function productDetailsTemplate(product) 
 {
@@ -26,9 +27,11 @@ export default class ProductDetails
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+   
   }
-  async init() 
+  async init() //gets called automtaically by default
   {
+    console.log("init", this.dataSource)
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
     // once we have the product details we can render out the HTML
@@ -43,35 +46,55 @@ export default class ProductDetails
       
   }
 
- addProductToCart(product) 
+ addToCart() 
   {
-      //change to getLocalStorage. setLocalStorage will replace the item with the new one when adding more than one item.
-      let items = getLocalStorage('so-cart') || [];
-  
-      if(!Array.isArray(items))
-      {
-          items = [items];
+
+      console.log("get product", this.product)
+      let items = [] ;
+      if( localStorage.getItem("so-cart") === null){
+          console.log(1, items)
+          items.push(this.product)
+      } else {
+          console.log(2, items)
+          items = localStorage.getItem("so-cart");
+          //local storage stores as a string
+          //it needs to be converted going in and out using json parse
+          // json stringfy
+          items = JSON.parse(items);
+          let found = false;
+          let index =0;
+          for (let i=0; i<items.length; i++){
+            if (items[i].Name==this.product.Name){
+              found=true;
+              index=i;
+            }
+          }
+          if (!found){
+            this.product.Quantity=1;
+            items.push(this.product);
+          }
+          else{
+            items[index].Quantity=items[index].Quantity+1;
+          }
+          
       }
-      items.push(product);
-      console.log(items);
-  
+      console.log("this is items",items);
+      
       //add all items to the cart
-      setLocalStorage('so-cart', items);
+      items = JSON.stringify(items);
+      localStorage.setItem('so-cart', items);
+      
+      updateCartNumber();
   }
   renderProductDetails(selector) 
+
   {
 
     //next
     const element = document.querySelector(selector);
     console.log("are we outputting?", productDetailsTemplate(this.product) )
     element.innerHTML = productDetailsTemplate(this.product);
-    /*
-    element.insertAdjacentHTML(
-      "afterBegin",
-      productDetailsTemplate(this.product)
-    );
-    */
+   
   }
-
-
 }
+
