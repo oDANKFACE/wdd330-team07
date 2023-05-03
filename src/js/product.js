@@ -8,7 +8,7 @@ const productID = getParams('product');
 
 //console.log(dataSource.findProductById(productID)); //filters the data 
 const product = new product_details(productID, dataSource); //product detail class
-product.init();// May need to comment this out. What is it doing?
+product.init();// May need to comment this out. What is it doing?//
 
 updateCartNumber();
 
