@@ -1,4 +1,4 @@
-import { loadHeaderFooter, getLocalStorage, updateCartNumber } from './utils.mjs';
+import { getLocalStorage, updateCartNumber, loadHeaderFooter } from './utils.mjs';
 
 
 function renderCartContents() {

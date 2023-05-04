@@ -66,10 +66,11 @@ async function loadTemplate(templatePath) {
   return template;
 }
 
-async function loadHeaderFooter() {
+//This was not an export funtion and we had the await before the loadTemplate which I had to remove once I changed it into an export. -HB
+export async function loadHeaderFooter() {
   // Load header and footer templates
-  const headerTemplate = await loadTemplate("../partials/header.html");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const headerTemplate = loadTemplate("../partials/header.html");
+  const footerTemplate = loadTemplate("../partials/footer.html");
 
   // Grab header and footer elements from the DOM
   const headerElement = document.querySelector("#main-header");
@@ -79,6 +80,5 @@ async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement, null, null);
   renderWithTemplate(footerTemplate, footerElement, null, null);
 }
-
 
 
