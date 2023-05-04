@@ -3,12 +3,10 @@
 
 function productCardTemplate(product) 
 {
-  console.log("we should get one", product)
-
     return `<li class="product-card">
     <a href="product_pages/index.html?product=${product.Id}">
     <img
-      src="${product.Image}"
+      src="${product.Image.PrimaryMedium}"
       alt="Image of ${product.Name}"
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -32,7 +30,6 @@ export default class ProductListing {
       // our dataSource will return a Promise...so we can use await to resolve it.
       const list = await this.dataSource.getData(this.category);
       // render the list - to be completed
-      console.log("did i get data?", list)
       this.renderList(list);
     }
 
