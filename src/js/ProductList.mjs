@@ -52,4 +52,6 @@ export default class ProductListing {
       this.renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 
+
+
   }

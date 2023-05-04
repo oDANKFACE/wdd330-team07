@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartNumber } from "./utils.mjs";
+import loadHeaderFooter, { getLocalStorage, setLocalStorage, updateCartNumber } from "./utils.mjs";
 
 
 function productDetailsTemplate(product) 
@@ -96,4 +96,6 @@ export default class ProductDetails
    
   }
 }
+
+
 

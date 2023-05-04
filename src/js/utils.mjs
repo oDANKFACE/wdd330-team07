@@ -1,6 +1,6 @@
 
 // wrapper for querySelector...returns matching element
-export function qs(selector, parent = document) 
+export function qs(selector, parent = document)
 {
   return parent.querySelector(selector);
 }
@@ -51,3 +51,38 @@ export function updateCartNumber()
   // push true quantity back to HTML (backpack number) - EC
   document.querySelector(".count").innerHTML = quantity;
 }
+
+export function renderWithTemplate(template, parent, data, callback) {
+  parent.parentElement.insertAdjacentHTML("afterbegin", template);
+  if(callback) {
+    callback(data);
+  }
+}
+
+
+
+
+
+async function loadTemplate(templatePath) {
+  const response = await fetch(templatePath);
+  const template = document.createElement('template');
+  template.innerHTML = await response.text();
+  return template;
+}
+
+async function loadHeaderFooter() {
+  // Load header and footer templates
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+
+  // Grab header and footer elements from the DOM
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  // Render header and footer using renderWithTemplate function
+  renderWithTemplate(headerTemplate, headerElement, null, null);
+  renderWithTemplate(footerTemplate, footerElement, null, null);
+}
+
+
+
