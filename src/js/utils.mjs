@@ -59,10 +59,6 @@ export function renderWithTemplate(template, parent, data, callback) {
   }
 }
 
-
-
-
-
 async function loadTemplate(templatePath) {
   const response = await fetch(templatePath);
   const template = document.createElement('template');
