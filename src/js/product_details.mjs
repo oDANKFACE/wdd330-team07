@@ -48,7 +48,6 @@ export default class ProductDetails
 
  addToCart() 
   {
-
       console.log("get product", this.product)
       let items = [] ;
       if( localStorage.getItem("so-cart") === null){
