@@ -80,6 +80,7 @@ export default class ProductDetails
       console.log("this is items",items);
       
       //add all items to the cart
+      //add all items to the cart store it as text
       items = JSON.stringify(items);
       localStorage.setItem('so-cart', items);
       

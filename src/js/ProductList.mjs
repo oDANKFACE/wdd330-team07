@@ -27,9 +27,12 @@ export default class ProductListing {
     }
 
     async init() {
+
+
       // our dataSource will return a Promise...so we can use await to resolve it.
-      const list = await this.dataSource.getData();
+      const list = await this.dataSource.getData(this.category);
       // render the list - to be completed
+      console.log("did i get data?", list)
       this.renderList(list);
     }
 

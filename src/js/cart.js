@@ -50,6 +50,7 @@ function deleteItem (e){
   //recreate cart with items deleted
   let newCart = [];
   cartItems.map(c => {
+     // if item id is the same as the item you clicked it repopulate a new array without the delete item
     if(c.Id !== itemId){
       newCart.push(c)
     }
