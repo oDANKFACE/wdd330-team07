@@ -64,7 +64,8 @@ function deleteItem (e){
   //Changes number on backpack
   updateCartNumber();
 }
-
+//TO DO ADD CHECKOUT BUTTON/LINK TO TAKE US TO CART
+//TO DO ADD FORM ON CHECKOUT PAGE 
 loadHeaderFooter();
 
 
