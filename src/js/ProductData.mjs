@@ -26,14 +26,11 @@ export default class ProductData
       return data.Result;
     }
   
-  async findProductById(id) 
-  {
-    const products = await this.getData();
-    return products.find((item) => {
-      //when you return true it will return the item back
-      return item.Id === id
-    });
+    async findProductById(id) {
+      const response = await fetch(baseURL + `product/${id}`);
+      const data = await convertToJson(response);
+      return data.Result;
+    }
 
 
   }
-}

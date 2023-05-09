@@ -10,7 +10,7 @@ const productID = getParams('product');
 const product = new ProductDetails(productID, dataSource); //product detail class
 product.init();// May need to comment this out. What is it doing?//
 
-updateCartNumber();
-loadHeaderFooter();
+//updateCartNumber();
+//loadHeaderFooter();
 
 
