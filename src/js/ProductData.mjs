@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+const baseURL = 'http://server-nodejs.cit.byui.edu:3000/';
 
 function convertToJson(res) 
 {
@@ -27,9 +27,8 @@ export default class ProductData
     }
   
     async findProductById(id) {
-      const response = await fetch(baseURL + `product/${id}`);
-      const data = await convertToJson(response);
-      return data.Result;
+      return await fetch(baseURL + `product/${id}`).then(convertToJson)
+      .then((data) => data.Result);
     }
 
 
