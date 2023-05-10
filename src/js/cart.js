@@ -1,4 +1,4 @@
-import { getLocalStorage, updateCartNumber } from './utils.mjs';
+import { getLocalStorage, updateCartNumber, loadHeaderFooter } from './utils.mjs';
 
 
 function renderCartContents() {
@@ -6,14 +6,14 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
 
-  let deleteBtnList = document.querySelectorAll("#deleteBtn");
+  let deleteBtnList = document.querySelectorAll('#deleteBtn');
 
   for(let i = 0; i < deleteBtnList.length; i++){
-    deleteBtnList[i].addEventListener("click", deleteItem)
+    deleteBtnList[i].addEventListener('click', deleteItem)
   }
   let total = 0;
   for(let i = 0; i < cartItems.length; i++){
-    total+= cartItems[i].FinalPrice*cartItems[i].Quantity;
+    total += cartItems[i].FinalPrice * cartItems[i].Quantity;
   }
   document.querySelector('#cartTotal').innerHTML = 'Cart Total: $' + total; 
 }
@@ -42,14 +42,15 @@ function cartItemTemplate(item) {
 
 
 function deleteItem (e){
-  let itemId = e.target.getAttribute("data-id");
-  console.log("check", e.target.getAttribute("data-id"))
+  let itemId = e.target.getAttribute('data-id');
+  console.log('check', e.target.getAttribute('data-id'))
 
   let cartItems = localStorage.getItem('so-cart');
   cartItems = JSON.parse(cartItems);
   //recreate cart with items deleted
   let newCart = [];
   cartItems.map(c => {
+     // if item id is the same as the item you clicked it repopulate a new array without the delete item
     if(c.Id !== itemId){
       newCart.push(c)
     }
@@ -58,11 +59,14 @@ function deleteItem (e){
 
   newCart = JSON.stringify(newCart);
 
-  localStorage.setItem('so-cart', newCart );
+  localStorage.setItem('so-cart', newCart);
   renderCartContents();
   //Changes number on backpack
   updateCartNumber();
 }
+//TO DO ADD CHECKOUT BUTTON/LINK TO TAKE US TO CART
+//TO DO ADD FORM ON CHECKOUT PAGE 
+loadHeaderFooter();
 
 
 renderCartContents();

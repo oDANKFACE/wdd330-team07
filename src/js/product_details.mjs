@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, updateCartNumber } from "./utils.mjs";
+import  { getLocalStorage, setLocalStorage, updateCartNumber, loadHeaderFooter } from "./utils.mjs";
 
 
 function productDetailsTemplate(product) 
@@ -31,11 +31,12 @@ export default class ProductDetails
   }
   async init() //gets called automtaically by default
   {
-    console.log("init", this.dataSource)
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
+     
+    console.log(this.productId)
+    console.log(this.dataSource.findProductById(this.productId))
     // once we have the product details we can render out the HTML
-    console.log("i got product", this.product)
     this.renderProductDetails(".product-detail");
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
@@ -48,13 +49,10 @@ export default class ProductDetails
 
  addToCart() 
   {
-      console.log("get product", this.product)
       let items = [] ;
       if( localStorage.getItem("so-cart") === null){
-          console.log(1, items)
           items.push(this.product)
       } else {
-          console.log(2, items)
           items = localStorage.getItem("so-cart");
           //local storage stores as a string
           //it needs to be converted going in and out using json parse
@@ -77,23 +75,20 @@ export default class ProductDetails
           }
           
       }
-      console.log("this is items",items);
       
       //add all items to the cart
+      //add all items to the cart store it as text
       items = JSON.stringify(items);
       localStorage.setItem('so-cart', items);
       
       updateCartNumber();
   }
-  renderProductDetails(selector) 
-
-  {
-
-    //next
+  renderProductDetails(selector){
+  //next
     const element = document.querySelector(selector);
-    console.log("are we outputting?", productDetailsTemplate(this.product) )
     element.innerHTML = productDetailsTemplate(this.product);
-   
-  }
+   }
 }
+
+
 

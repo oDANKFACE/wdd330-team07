@@ -231,3 +231,17 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
+/* categories */
+.categories{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  color:black;
+  width: 100%;
+}
+.product-item{
+  width: 150px;
+  text-decoration: none;
+}
