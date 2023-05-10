@@ -1,8 +1,9 @@
 import  { getLocalStorage, setLocalStorage, updateCartNumber, loadHeaderFooter } from "./utils.mjs";
 
 
-function productDetailsTemplate(product) 
-{
+function productDetailsTemplate(product) {
+  // I'm not sure where to grab original price/final price, can't totally tell what's
+  const discountPercentage = calculateDiscountPercentage(product.OriginalPrice, product.FinalPrice);
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
@@ -10,6 +11,7 @@ function productDetailsTemplate(product)
       src="${product.Image}"
       alt="${product.NameWithoutBrand}"
     />
+    ${discountPercentage > 0 ? `<p class="product-card__discount">${discountPercentage}% OFF</p>` : ''}
     <p class="product-card__price">$${product.FinalPrice}</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
@@ -88,6 +90,13 @@ export default class ProductDetails
     const element = document.querySelector(selector);
     element.innerHTML = productDetailsTemplate(this.product);
    }
+}
+
+function calculateDiscountPercentage(originalPrice, finalPrice) {
+  if (originalPrice === finalPrice) {
+    return 0;
+  }
+  return Math.round(((originalPrice - finalPrice) / originalPrice) * 100);
 }
 
 

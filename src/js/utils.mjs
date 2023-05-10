@@ -79,6 +79,8 @@ export async function loadHeaderFooter() {
   // Render header and footer using renderWithTemplate function
   renderWithTemplate(headerTemplate, headerElement, null, null);
   renderWithTemplate(footerTemplate, footerElement, null, null);
+
+
 }
 
 
