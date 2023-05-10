@@ -53,8 +53,9 @@ export function updateCartNumber()
 }
 
 export function renderWithTemplate(template, parent, data, callback) {
-  parent.parentElement.insertAdjacentHTML("afterbegin", template);
+  // parent.parentElement.insertAdjacentHTML("afterbegin", template);
   if(callback) {
+    
     callback(data);
   }
 }
@@ -62,6 +63,7 @@ export function renderWithTemplate(template, parent, data, callback) {
 async function loadTemplate(templatePath) {
   const response = await fetch(templatePath);
   const template = document.createElement('template');
+  // console.log(response.text());
   template.innerHTML = await response.text();
   return template;
 }
@@ -69,11 +71,13 @@ async function loadTemplate(templatePath) {
 //This was not an export funtion and we had the await before the loadTemplate which I had to remove once I changed it into an export. -HB
 export async function loadHeaderFooter() {
   // Load header and footer templates
-  const headerTemplate = loadTemplate("../partials/header.html");
-  const footerTemplate = loadTemplate("../partials/footer.html");
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  
+  const footerTemplate = await loadTemplate("../partials/footer.html");
 
   // Grab header and footer elements from the DOM
   const headerElement = document.querySelector("#main-header");
+  
   const footerElement = document.querySelector("#main-footer");
 
   // Render header and footer using renderWithTemplate function

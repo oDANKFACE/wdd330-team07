@@ -31,13 +31,15 @@ export default class ProductListing {
       // our dataSource will return a Promise...so we can use await to resolve it.
       const list = await this.dataSource.getData(this.category);
       // render the list - to be completed
+      // console.log(list);
       this.renderList(list);
     }
 
     renderListWithTemplate (template, element, data ){
       // add that template to his element
+      
       data.map((d, i)=>{
-        
+        console.log("123");
         //don't render 2 and 4 because they don't have images
         console.log("i?", i)
         if(i === 2 || i === 4){
