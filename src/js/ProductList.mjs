@@ -3,12 +3,11 @@
 
 function productCardTemplate(product) 
 {
-  console.log("we should get one", product)
-
+  console.log(product)
     return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?product=${product.Id}">
     <img
-      src="${product.Image}"
+      src="${product.Images.PrimaryMedium}"
       alt="Image of ${product.Name}"
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -27,8 +26,10 @@ export default class ProductListing {
     }
 
     async init() {
+
+
       // our dataSource will return a Promise...so we can use await to resolve it.
-      const list = await this.dataSource.getData();
+      const list = await this.dataSource.getData(this.category);
       // render the list - to be completed
       this.renderList(list);
     }
@@ -51,5 +52,7 @@ export default class ProductListing {
     renderList(list) {
       this.renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
+
+
 
   }
