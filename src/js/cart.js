@@ -51,7 +51,7 @@ function cartItemTemplate(item) {
   let newItem = `<li class='cart-card divider'>
   <a href='#' class='cart-card__image'>
     <img
-      src='${item.Image}'
+      src='${item.Images.PrimarySmall}'
       alt='${item.Name}'
     />
   </a>
@@ -101,6 +101,11 @@ loadHeaderFooter();
 renderCartContents();
 updateCartNumber();
 
+// export function updateCartIcon() {
+  //const cartItemAmount = document.getElementById("amountInCart");
+  //const numItems = getLocalStorage("so-cart");
+  //cartItemAmount.innerHTML = numItems.length;
+//}
 
 
 
