@@ -4,7 +4,36 @@ import { getLocalStorage, updateCartNumber, loadHeaderFooter } from './utils.mjs
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
+
+
+  let selectorList = document.querySelectorAll(".qSelector");
+
+  for(let i =  0; i < selectorList.length; i++){
+
+    selectorList[i].addEventListener("change", (e)=>{
+
+
+      //cartItems[i].Quantity =  e.target.value;
+      console.log("what am i?",  selectorList[i].getAttribute("data-id"))
+
+
+      //add to local storage 
+      //loop through cartItems
+      //update Quantity: e.target.value
+     
+     
+      //rerender calculateCartQuantityTotal()
+
+
+  
+    })
+
+  }
+  
+  
+ 
 
   let deleteBtnList = document.querySelectorAll('#deleteBtn');
 
@@ -22,7 +51,7 @@ function cartItemTemplate(item) {
   let newItem = `<li class='cart-card divider'>
   <a href='#' class='cart-card__image'>
     <img
-      src='${item.Image}'
+      src='${item.Images.PrimarySmall}'
       alt='${item.Name}'
     />
   </a>
@@ -30,7 +59,7 @@ function cartItemTemplate(item) {
     <h2 class='card__name'>${item.Name}</h2>
   </a>
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-  <p class='cart-card__quantity'>qty: <input type = 'number' min = '0' value = '${item.Quantity}' data-id="${item.Id}"></p>
+  <p class='cart-card__quantity'>qty: <input type = 'number' class="qSelector" min = '0' value = '${item.Quantity}' data-id="${item.Id}"></p>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
   <button id="deleteBtn" data-id=${item.Id}>Remove Item</button>
 </li>
@@ -71,3 +100,13 @@ loadHeaderFooter();
 
 renderCartContents();
 updateCartNumber();
+
+// export function updateCartIcon() {
+  //const cartItemAmount = document.getElementById("amountInCart");
+  //const numItems = getLocalStorage("so-cart");
+  //cartItemAmount.innerHTML = numItems.length;
+//}
+
+
+
+
