@@ -6,15 +6,16 @@
     <title>Sleep Outside | Home</title>
     
     
-    <script type="module" crossorigin src="/assets/main-5a646096.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-be2b37a9.js">
-    <link rel="modulepreload" crossorigin href="/assets/ProductData-d6956273.js">
-    <link rel="stylesheet" href="/assets/style-ce16c0e8.css">
+    <script type="module" crossorigin src="/assets/main-0447a508.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/utils-94abd463.js">
+    <link rel="modulepreload" crossorigin href="/assets/ProductData-e3e196c0.js">
+    <link rel="stylesheet" href="/assets/utils-bbcc65b2.css">
   </head>
   <body>
-    <header class="divider">
+    <header id="main-header" class="divider">
+
       <div class="logo">
-        <img src="./images/noun_Tent_2517.svg" alt="tent image for logo">
+        <img src="/assets/noun_Tent_2517-39cf0de3.svg" alt="tent image for logo">
         <a href="index.html"> Sleep<span class="highlight">Outside</span></a>
       </div>
       <div class="cart">
@@ -32,17 +33,19 @@
             <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
           </svg>
         </a>
+        <!--Add number icon to backpack-->
+        <span class="count">0</span>
       </div>
     </header>
     <main class="divider">
       <div class="hero">
         <img
           src="/images/banner-sm.jpg"
-          srcset="images/banner-sm.jpg 500w, images/banner.jpg"
+          srcset="/assets/banner-sm-235c9621.jpg 500w, /assets/banner-e1e2608c.jpg "
           alt="image of a high mountain lake"
         />
         <div class="logo logo--square">
-          <img src="./images/noun_Tent_2517.svg" alt="tent image for logo">
+          <img src="/assets/noun_Tent_2517-39cf0de3.svg" alt="tent image for logo">
           <div>Sleep<span class="highlight">Outside</span></div>
         </div>
       </div>
@@ -58,10 +61,30 @@
       <section class="products">
         <h2>Top Products</h2>
         <ul class="product-list">
-          
-        </ul>
+          <section class="categories"> 
+            <a class="product-item"
+              href="product-listing/?category=tents"> 
+              <img src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Tent_3544767.svg" alt="">
+              <p>Tents</p>
+            </a>
+            <a class="product-item"
+              href="product-listing/?category=backpacks"> 
+              <img src="https://byui-cit.github.io/wdd330/images/category-icons/noun_carrier%20bag_3544771.svg" alt="">
+              <p>Backpacks</p>
+            </a>
+            <a class="product-item"
+              href="product-listing/?category=sleeping-bags"> 
+              <img src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Sleeping%20Bag_3544775.svg" alt="">
+              <p>Sleeping bags</p>
+            </a>
+            <a class="product-item"
+              href="product-listing/?category=hammocks"> 
+              <img src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Hammock_791143.svg" alt="">
+              <p>Hammocks</p>
+            </a>
+          </ul>
       </section>
     </main>
-    <footer>&copy;NOT a real business</footer>
+    <footer id="main-footer">&copy;NOT a real business</footer>
   </body>
 </html>

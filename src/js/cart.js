@@ -1,4 +1,5 @@
-import { getLocalStorage, updateCartNumber, loadHeaderFooter } from './utils.mjs';
+import ProductData from './ProductData.mjs';
+import { getLocalStorage, updateCartNumber, loadHeaderFooter, setLocalStorage } from './utils.mjs';
 
 
 function renderCartContents() {
@@ -12,12 +13,43 @@ function renderCartContents() {
 
   for(let i =  0; i < selectorList.length; i++){
 
-    selectorList[i].addEventListener("change", (e)=>{
-
-
-      //cartItems[i].Quantity =  e.target.value;
-      console.log("what am i?",  selectorList[i].getAttribute("data-id"))
-
+    selectorList[i].addEventListener("input", async (e)=>{
+      const dataSource = new ProductData()
+      const product = await dataSource.findProductById(e.target.getAttribute('data-id'));      
+     
+      let items = [] ;
+      if( localStorage.getItem("so-cart") === null){
+          items.push(product)
+      } else {
+          items = localStorage.getItem("so-cart");
+          //local storage stores as a string
+          //it needs to be converted going in and out using json parse
+          // json stringfy
+          items = JSON.parse(items);
+          let found = false;
+          let index =0;
+          for (let i=0; i<items.length; i++){
+            if (items[i].Name==product.Name){
+              found=true;
+              index=i;
+            }
+          }
+          if (!found){
+            product.Quantity=1;
+            items.push(product);
+          }
+          else{
+            items[index].Quantity=parseInt(e.target.value);
+          }
+          
+      }
+      
+      //add all items to the cart
+      //add all items to the cart store it as text
+      items = JSON.stringify(items);
+      localStorage.setItem('so-cart', items);
+      
+      updateCartNumber();
 
       //add to local storage 
       //loop through cartItems
@@ -59,7 +91,7 @@ function cartItemTemplate(item) {
     <h2 class='card__name'>${item.Name}</h2>
   </a>
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-  <p class='cart-card__quantity'>qty: <input type = 'number' class="qSelector" min = '0' value = '${item.Quantity}' data-id="${item.Id}"></p>
+  <p class='cart-card__quantity'>qty: <input type = 'number' class="qSelector" min = '0' value = '${item.Quantity}' data-id='${item.Id}'></p>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
   <button id="deleteBtn" data-id=${item.Id}>Remove Item</button>
 </li>
