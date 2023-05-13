@@ -8,15 +8,18 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    
+    <script type="module" crossorigin src="/assets/checkout-8b556085.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/utils-94abd463.js">
+    <link rel="stylesheet" href="/assets/utils-bbcc65b2.css">
   </head>
 
   <body>
     <header class="divider">
       <div class="logo">
-        <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <img src="/assets/noun_Tent_2517-39cf0de3.svg" alt="tent image for logo" />
 
-        <a href="index.html">
+        <a href="../index.html">
           Sleep
           <span class="highlight">Outside</span>
         </a>
@@ -60,8 +63,57 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+      <form action="/submit" method="post">
+        <fieldset>            
+          <legend>Billing Information</legend>            
+          <label for="firstName">First Name:</label>            
+          <input type="text" id="firstName" name="firstName" required><br>
+
+          <label for="lastName">Last Name:</label>            
+          <input type="text" id="lastName" name="lastName" required><br>
+          
+          <label for="email">Email:</label>            
+          <input type="email" id="email" name="email" required><br>
+                     
+          <label for="address">Address:</label>     
+          <input type="text" id="address" name="address" required><br>  
+
+          <label for="city">City:</label>            
+          <input type="text" id="city" name="city" required><br>          
+
+          <label for="state">State/Province:</label>            
+          <input type="text" id="state" name="state" required><br>        
+
+          <label for="zip">ZIP/Postal Code:</label>            
+          <input type="text" id="zip" name="zip" required><br>  
+
+          <div id="order_summary"></div>
+        </fieldset>          
+        <fieldset>
+          <legend>Payment Information</legend>            
+          <label for="cardName">Name on Card:</label>            
+          <input type="text" id="cardName" name="cardName" required><br>    
+
+          <label for="cardNumber">Card Number:</label>            
+          <input type="text" id="cardNumber" name="cardNumber" required><br>  
+
+          <label for="expiration">Expiration Date (MM/YY):</label>            
+          <input type="text" id="expiration" name="expiration" required><br>   
+
+          <label for="cvv">CVV:</label>            
+          <input type="text" id="cvv" name="cvv" required><br>        
+        </fieldset>
+        <button onclick="">Complete Purchase</button>
+      </form>
+      <!--TO DO ADD FORM WITH CUSTOMER INFORMATION THAT WILL NOT SUBMIT UNLESS ALL FILELDS ARE COMPLETED-->
+      <!--FORM NEEDS F.NAME L.NAME ADDRESS PAYMENT/CC#,EXPIRATION DATE, SERCURITY CODE -->
+      <!--TO DO ADD CHECKOUT BUTTON-->
+      <!--TO DO ADD ORDER SUMMARY SUBTOTAL SHIPPING ESTIMATE TAX ORDER TOTAL-->
     </main>
 
     <footer>&copy;NOT a real business</footer>
+
+
+  
   </body>
 </html>
