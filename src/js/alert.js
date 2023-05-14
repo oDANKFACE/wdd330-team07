@@ -10,7 +10,7 @@ export default class Alert {
 
 fs.readFile('alerts.json', 'utf8', (err, jsonString) => {
   if (err) {
-    console.log('Error reading file:', err);
+    console.log('Please don\'t be mad, but I couldn\'t connect to alerts.json... I\'m so sorry.', err);
     return;
   }
 
@@ -34,7 +34,7 @@ fs.readFile('alerts.json', 'utf8', (err, jsonString) => {
       mainElement.prepend(section);
     });
   } catch(err) {
-    console.log('Error parsing JSON string:', err);
+    console.log('I tried to do the json thing, and I failed... see if I care', err);
   }
 });
 
