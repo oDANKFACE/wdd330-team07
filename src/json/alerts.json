@@ -4,5 +4,8 @@
     },
     {
         "message": "This is only a second test", "background": "darkblue", "color": "white"
+    },
+    {
+        "message": "This is only a third test", "background": "darkblue", "color": "white"
     }
 ]
