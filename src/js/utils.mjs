@@ -42,12 +42,18 @@ export function updateCartNumber()
   let quantity = 0;
 
   // parse through itmes currently in cart - EC
-  for(let i = 0; i < items.length; i++)
+  if(items.Quantity == null)
   {
-    // for each singular item, dive into the "Quantity" attribute and add it to "quantity" - EC
-    quantity += items[i].Quantity
+    console.log("Cart is empty");
   }
-
+  else
+  {
+    for(let i = 0; i < items.length; i++)
+    {
+      // for each singular item, dive into the "Quantity" attribute and add it to "quantity" - EC
+      quantity += items[i].Quantity;
+    }
+  }
   // push true quantity back to HTML (backpack number) - EC
   document.querySelector(".count").innerHTML = quantity;
 }
